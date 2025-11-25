@@ -1,14 +1,17 @@
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 html,
 body {
     height: 100vh;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex: 1;
+    align-items: center;
+    gap: 10%;
+    background-color: #C4B197;
 }
 
 /*Para ver los bordes de los divs*/
@@ -22,6 +25,7 @@ div {
     align-items: center;
     gap: 10%;
     height: 10%;
+    width: 100vw;
 }
 
 #formBook {
@@ -54,7 +58,57 @@ dialog {
 
 .main-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
+    min-width: 50%;
+    min-height: 210px;
+    align-items: center;
     gap: 20px;
-    min-height: 250px;
+    background-color: #3D3426;
+}
+
+.card {
+    min-width: 60px;
+    max-width: 60px;
+    min-height: 200px;
+    max-height: 200px;
+    margin: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    background-color: saddlebrown;
+}
+
+.book-info{
+    display: flex;
+    flex-direction: column;
+    writing-mode: sideways-lr;
+    justify-content: space-evenly;
+}
+
+.title, .author, .pages {
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+}
+
+.book-opt {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#deleteBook, #readBook {
+    max-width: 95%;
+    display: flex;
+    justify-content: center;
+}
+
+#deleteBook {
+    margin-top: 5%;
+}
+
+#readBook {
+    margin-bottom: 5%;
 }
