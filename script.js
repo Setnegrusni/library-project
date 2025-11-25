@@ -1,4 +1,6 @@
+//=============================================================================
 //Variables globales
+//=============================================================================
 const myLibrary = [];
 const btFormBook = document.querySelector("#formBook");
 const myModal = document.querySelector("dialog");
@@ -76,7 +78,18 @@ function createCard() {
 //Función que agrega los elementos necesarios a la targeta
 function addCardElements() {
     myCard = document.querySelector("[data-id='" + myLastBook.id + "']");
+    const myBookInfo = document.createElement("div");
+    const myBookOpt = document.createElement("div");
     const btDelBook = document.createElement("button");
+    const btReadBook = document.createElement("button")
+
+    myBookInfo.classList.add("book-info");
+    myBookOpt.classList.add("book-opt");
+    myCard.appendChild(myBookInfo);
+    myCard.appendChild(myBookOpt);
+
+    myBookInfoSel = document.querySelector("[data-id='" + myLastBook.id + "'] > .book-info");
+    myBookOptSel = document.querySelector("[data-id='" + myLastBook.id + "'] > .book-opt");
 
     for (let i = 0; i <= 2; i++) {
         newPara = document.createElement("p");
@@ -89,13 +102,17 @@ function addCardElements() {
             newPara.classList.add("pages");
         }
 
-        myCard.appendChild(newPara);
+        myBookInfoSel.appendChild(newPara);
     }
 
+    btReadBook.setAttribute("id", "readBook");
+    btReadBook.setAttribute("data-card", myLastBook.id);
+    btReadBook.textContent = "Read";
     btDelBook.setAttribute("id", "deleteBook");
     btDelBook.setAttribute("data-card", myLastBook.id);
     btDelBook.textContent = "Delete";
-    myCard.appendChild(btDelBook);
+    myBookOptSel.appendChild(btReadBook);
+    myBookOptSel.appendChild(btDelBook);
 
     getCardInfo();
 
@@ -112,11 +129,11 @@ function addCardElements() {
 
 //Agrega la información correspondiente a la targeta partir del id 
 function getCardInfo() {
-    myParaTitle = document.querySelector("[data-id='" + myLastBook.id + "'] > .title");
-    myParaAuthor = document.querySelector("[data-id='" + myLastBook.id + "'] > .author");
-    myParaPages = document.querySelector("[data-id='" + myLastBook.id + "'] > .pages");
+    myParaTitle = document.querySelector("[data-id='" + myLastBook.id + "'] > .book-info > .title");
+    myParaAuthor = document.querySelector("[data-id='" + myLastBook.id + "'] > .book-info > .author");
+    myParaPages = document.querySelector("[data-id='" + myLastBook.id + "'] > .book-info > .pages");
 
     myParaTitle.textContent = myLastBook.title
     myParaAuthor.textContent = myLastBook.author
-    myParaPages.textContent = myLastBook.pages
+    myParaPages.textContent = myLastBook.pages + " páginas"
 }
