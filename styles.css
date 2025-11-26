@@ -1,6 +1,7 @@
 * {
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 html,
@@ -11,12 +12,12 @@ body {
     flex: 1;
     align-items: center;
     gap: 10%;
-    background-color: #C4B197;
+    background-color: #3D3426;
 }
 
 /*Para ver los bordes de los divs*/
 div {
-    border: 2px solid black;
+    /*border: 2px solid black;*/
 }
 
 .header {
@@ -26,6 +27,24 @@ div {
     gap: 10%;
     height: 10%;
     width: 100vw;
+    background-color: #C4B197;
+}
+
+.header > p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.header > button {
+    border-radius: 10px;
+    border-style: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: #E4DFD3;
+}
+
+.header > button:hover {
+    background-color: #9D8E62;
 }
 
 #formBook {
@@ -39,12 +58,28 @@ dialog {
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
+    background-color: #C4B197;
+    border-radius: 10px;
 }
 
 .book-form {
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.book-title,
+.book-author,
+.book-pages > label {
+    font-weight: bold;
+}
+
+#bookTitle,
+#bookAuthor,
+#bookPages {
+    background-color: #E4DFD3;
+    border-radius: 10px;
+    border-style: none;
 }
 
 .book-title,
@@ -56,10 +91,23 @@ dialog {
     gap: 16px;
 }
 
+.book-opt > button,
+.modal-footer > button {
+    border-radius: 5px;
+    border-style: none;
+    font-weight: bold;
+    background-color: #E4DFD3;
+}
+
+.book-opt > button:hover,
+.modal-footer > button:hover {
+    background-color: #9D8E62;
+}
+
 .main-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 50px));
-    min-width: 50%;
+    min-width: 60%;
     min-height: 210px;
     align-items: center;
     gap: 20px;
@@ -75,8 +123,10 @@ dialog {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 15px;
     background-color: saddlebrown;
+    border-radius: 5%;
+    border: 1px solid red;
 }
 
 .book-info{
@@ -95,18 +145,19 @@ dialog {
 .book-opt {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     align-items: center;
 }
 
 #deleteBook, #readBook {
-    max-width: 95%;
+    min-width: 90%;
+    max-width: 90%;
     display: flex;
     justify-content: center;
 }
 
 #deleteBook {
-    margin-top: 5%;
+    margin: 5% 0;
 }
 
 #readBook {
