@@ -24,19 +24,21 @@ btFormBook.addEventListener("click", () => {
 //Botón que cierra modal
 btCloseModal.addEventListener("click", () => {
     myModal.close();
+    clearFields();
 });
 
 //Botón que arega un nuevo libro
 btAddBook.addEventListener("click", (event) => {
     event.preventDefault();
     addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value);
+    clearFields();
 });
 
 //=============================================================================
 //Constructor de libros
 //=============================================================================
 function Book(title, author, pages) {
-    this.id = crypto.randomUUID();
+    this.id = crypto.randomUUID(); //Genera un ID único e irrepetible
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -55,15 +57,29 @@ function addBookToLibrary(bookTitle, bookAuthor, bookPages) {
     displayBooks();
 }
 
+//Función para limpiar campos del formulario
+function clearFields() {
+    bookTitle.value = "";
+    bookAuthor.value = "";
+    bookPages.value = "";
+}
+
 //Se crean dos libros de ejemplo
 addBookToLibrary("Libro 1", "Autor 1", "255");
 addBookToLibrary("Libro 2", "Autor 2", "255");
 addBookToLibrary("Libro 3", "Autor 3", "255");
 addBookToLibrary("Libro 4", "Autor 4", "255");
+addBookToLibrary("Libro 5", "Autor 5", "255");
+addBookToLibrary("Libro 6", "Autor 6", "255");
+addBookToLibrary("Libro 7", "Autor 7", "255");
+addBookToLibrary("Libro 8", "Autor 8", "255");
+addBookToLibrary("Libro 9", "Autor 9", "255");
+addBookToLibrary("Libro 10", "Autor 10", "255");
 
 //Función que muestra los libros
 function displayBooks() {
     createCard();
+    addCardElements();
 }
 
 //Función que genera una nueva targeta
@@ -72,7 +88,6 @@ function createCard() {
     newCard.classList.add("card");
     newCard.setAttribute("data-id", myLastBook.id); //
     mainContent.appendChild(newCard);
-    addCardElements();
 }
 
 //Función que agrega los elementos necesarios a la targeta
@@ -108,13 +123,28 @@ function addCardElements() {
     btReadBook.setAttribute("id", "readBook");
     btReadBook.setAttribute("data-card", myLastBook.id);
     btReadBook.textContent = "Read";
+    
     btDelBook.setAttribute("id", "deleteBook");
     btDelBook.setAttribute("data-card", myLastBook.id);
     btDelBook.textContent = "Delete";
+
     myBookOptSel.appendChild(btReadBook);
     myBookOptSel.appendChild(btDelBook);
 
     getCardInfo();
+
+    //Botón para marcar un libro como leido
+    btReadBook.addEventListener("click", (e) => {
+        const cardId = e.target.dataset.card;
+        const actualCard = document.querySelector("[data-id='" + cardId + "']");
+        const actualCardBorder = actualCard.getAttribute("style");
+
+        if (actualCardBorder === "border: 1px solid green") {
+            actualCard.setAttribute("style", "border: 1px solid red");
+        } else {
+            actualCard.setAttribute("style", "border: 1px solid green");
+        }
+    });
 
     //Botón que elimina el libro
     btDelBook.addEventListener("click", (e) => {
